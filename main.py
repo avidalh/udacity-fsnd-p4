@@ -28,7 +28,7 @@ class SendConfirmationEmailHandler(webapp2.RequestHandler):
             'noreply@%s.appspotmail.com' % ( app_identity.get_application_id()),     # from
             self.request.get('email'),                  # to
             'You created a new Conference!',            # subj
-            'Hi, you have created a following '         # body
+            'Hi, you have created the following '         # body
             'conference:\r\n\r\n%s' % self.request.get(
                 'conferenceInfo')
         )
@@ -38,4 +38,3 @@ app = webapp2.WSGIApplication([
     ('/tasks/send_confirmation_email', SendConfirmationEmailHandler),
     ('/tasks/set_featured_speaker', SetFeaturedSpeaker),
 ], debug=True)
-

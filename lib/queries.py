@@ -203,7 +203,6 @@ def delete_session_from_wishlist(profile, wssk):
 def unregister_to_conference(profile, conference, wsck):
     """Register or unregister user for selected conference."""
     retval = None
-    # check if user already registered
     if wsck in profile.conferenceKeysToAttend:
         profile.conferenceKeysToAttend.remove(wsck)
         conference.seatsAvailable += 1
@@ -211,24 +210,9 @@ def unregister_to_conference(profile, conference, wsck):
     else:
         retval = False
 
-    # write things back to the datastore & return
     profile.put()
     conference.put()
     return models.BooleanMessage(data=retval)
-
-
-def get_sessions():
-    query = Session.query()
-    return query.fetch()
-
-
-def get_sessions_by_speaker(speaker_name):
-    """Get session by speaker"""
-    speaker = get_create_speaker(speaker_name)
-    query = Session.query()
-    query = query.filter(Session.speaker == speaker)
-
-    return query
 
 
 def set_featured_speaker(wsck, speaker_name):
@@ -244,9 +228,23 @@ def set_featured_speaker(wsck, speaker_name):
         memcache.set(MEMCACHE_FEATURED_SPEAKER, message)
 
 
+def get_sessions_by_speaker(speaker_name):
+    """Get session by speaker"""
+    speaker = get_create_speaker(speaker_name)
+    query = Session.query()
+    query = query.filter(Session.speaker == speaker)
+
+    return query
+
+
 def query_session_task3(last_hour, session_type):
     """Query session for task 3"""
     query = Session.query()
     query = query.filter(Session.startTime.IN(range(1, last_hour+1)))
     query = query.filter(Session.typeOfSession != session_type)
     return query
+
+
+def get_sessions():
+    query = Session.query()
+    return query.fetch()

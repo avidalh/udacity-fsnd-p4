@@ -53,14 +53,14 @@
     - getSessionsInWishlist()
 
 ### Task 3
-1. I've created querySessionT3 endpoint which supports time and sessionType params. I've solved the problem by enumerating all hours before 7pm. This way I've managed to avoid using 2 inequality filters but several equality ones and a single inequality filter.
+1. Created querySessionT3 endpoint which supports time and sessionType params. I've solved the problem by enumerating all hours before 7pm. This way I've managed to avoid using 2 inequality filters but several equality ones and a single inequality filter.
 1. Additional endpoints implemented
     - getSession(SessionKey) - get session details with provided SessionKey
-    - removeSessionFromWishlist(SessionKey) - remove session from wishlist(to correct/remove possible mistakes on creation)
+    - removeSessionFromWishlist(SessionKey) - remove session from wishlist (to correct/remove possible mistakes during creation process)
     - querySessionT3(lastStartTimeHour, unwantedTypeOfSession)
 
 ### Task 4
-1. Implement a method that adds speaker and session names to memcache if upon session creation speaker has another session on that conference.
+1. Implemented a method that adds speaker and session names to memcache if upon session creation speaker has another session on that conference.
 1. Endpoints implemented
     - getFeaturedSpeaker()
 
