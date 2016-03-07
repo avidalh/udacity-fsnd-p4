@@ -28,41 +28,41 @@
 ## Tasks
 
 ### Task 1
-1. Speaker is an entity that has the `name` as primary key. This was done not to create confusions between names when testing and to identify speakers more easily. This will be changed into a generated key. It contains the following fields:
-    - name - StringProperty(required, unique)
-    - age - IntegerProperty
-    - specialization - StringProperty
+1. Speaker is an entity that has `name` as primary key. This was done not to create confusions between names when testing and to identify speakers more easily. This will be changed into a generated key. It contains the following fields:
+    - `name` - StringProperty(required, unique)
+    - `age` - IntegerProperty
+    - `specialization` - StringProperty
 1. Session is an entity containing the entity speaker inside it for quick access. All required fields as described below:
-    - name - StringProperty(required)
-    - speaker - StructuredProperty(Speaker)
-    - websafeConferenceKey - StringProperty
-    - startTime - IntegerProperty
-    - duration - IntegerProperty
-    - typeOfSession - StringProperty
-    - date - DateProperty
-    - highlights - StringProperty(repeated)
+    - `name` - StringProperty(required)
+    - `speaker` - StructuredProperty(Speaker)
+    - `websafeConferenceKey` - StringProperty
+    - `startTime` - IntegerProperty
+    - `duration` - IntegerProperty
+    - `typeOfSession` - StringProperty
+    - `date` - DateProperty
+    - `highlights` - StringProperty(repeated)
 1. Endpoints implemented
-    - getConferenceSessions(websafeConferenceKey)
-    - getConferenceSessionsByType(websafeConferenceKey, typeOfSession)
-    - getSessionsBySpeaker(speaker)
-    - createSession(SessionForm, websafeConferenceKey))
+    - `getConferenceSessions(websafeConferenceKey)`
+    - `getConferenceSessionsByType(websafeConferenceKey, typeOfSession)`
+    - `getSessionsBySpeaker(speaker)``
+    - `createSession(SessionForm, websafeConferenceKey))`
 
 ### Task 2
 1. Endpoints implemented
-    - addSessionToWishlist(SessionKey)
-    - getSessionsInWishlist()
+    - `addSessionToWishlist(SessionKey)``
+    - `getSessionsInWishlist()`
 
 ### Task 3
-1. Created querySessionT3 endpoint which supports time and sessionType params. I've solved the problem by enumerating all hours before 7pm. This way I've managed to avoid using 2 inequality filters but several equality ones and a single inequality filter.
+1. Created `querySessionT3` endpoint which supports time and sessionType params. I've solved the problem by enumerating all hours before 7pm. This way I've managed to avoid using 2 inequality filters but several equality ones and a single inequality filter.
 1. Additional endpoints implemented
-    - getSession(SessionKey) - get session details with provided SessionKey
-    - removeSessionFromWishlist(SessionKey) - remove session from wishlist (to correct/remove possible mistakes during creation process)
-    - querySessionT3(lastStartTimeHour, unwantedTypeOfSession)
+    - `getSession(SessionKey)` - get session details with provided SessionKey
+    - `removeSessionFromWishlist(SessionKey)` - remove session from wishlist (to correct/remove possible mistakes during creation process)
+    - `querySessionT3(lastStartTimeHour, unwantedTypeOfSession)`
 
 ### Task 4
 1. Implemented a method that adds speaker and session names to memcache if upon session creation speaker has another session on that conference.
 1. Endpoints implemented
-    - getFeaturedSpeaker()
+    - `getFeaturedSpeaker()`
 
 
 [1]: https://developers.google.com/appengine
